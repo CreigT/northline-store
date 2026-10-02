@@ -1,0 +1,16 @@
+:root { --ink:#1c1915; --muted:#5e574e; --line:#e4ddd2; --paper:#f6f1ea; --card:#fffdf9; --sage:#2c4236; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:Georgia, serif; }
+.wrap { width:min(980px, calc(100% - 32px)); margin:0 auto; padding:24px 0 48px; }
+.nav, .nav-links, .hero-actions { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+.nav { justify-content:space-between; }
+a { color:inherit; }
+.btn { display:inline-block; background:var(--sage); color:#f7f4ee; text-decoration:none; border:0; border-radius:999px; padding:10px 16px; font-family:system-ui,sans-serif; }
+.btn.secondary { background:transparent; color:var(--ink); border:1px solid #cfc6b8; }
+.card, table { background:var(--card); border:1px solid var(--line); border-radius:16px; }
+.card { padding:16px; margin:12px 0; }
+.product-grid, .grid-3 { display:grid; gap:12px; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); }
+h1 { font-size:42px; line-height:1.05; }
+.price { font-size:28px; }
+input, select { width:100%; padding:10px; margin:6px 0 12px; }
+.hidden { display:none; }
+.notice { background:#f3eadf; border-radius:12px; padding:12px; }
