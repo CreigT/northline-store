@@ -1,14 +1,11 @@
-# Phase 2
+# Phase 2 status
 
-Branch: feature/saas-foundation. Not merged.
+Not approved. Not merged. Not complete.
 
-PostgreSQL schema and migration exist. JSON is not the intended production store.
+Prisma schema validated with Prisma 5.22.0 against a placeholder URL. prisma generate did not finish: the CLI tried to npm install and exited 255.
 
-Signup validates input and hashes a password in memory. It returns 503 and saves no user until DATABASE_URL, AUTH_SECRET, and a connected Prisma client exist. That is live verification blocked, not a fake account.
+prisma migrate deploy was not run. No PostgreSQL server is available here. TEST_DATABASE_URL is unset. The integration test skipped. That is a fail for the database-backed tenant requirement, not a pass.
 
-Tenant access is allow-list membership. A store id from the browser is rejected unless the session membership includes it. Tests cover product, order, customer, and settings shape.
+Signup uses db.$transaction when getDb() connects. Without DATABASE_URL it returns 503 and creates no user.
 
-Tests run: node --test tests/tenant.test.js. Result: 4 passed, 0 failed.
-Lint and typecheck: node --check on the new modules. Passed.
-Build: node --check api/checkout.js. Passed.
-Prisma generate and migrate were not run. No database URL in this environment.
+This app is static HTML plus Vercel functions. There is no bundle step. node --check is syntax only, not a production build.
