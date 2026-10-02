@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merchant store</title>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="wrap">
+<header class="nav"><a href="/s/store">Store</a></header>
+<section class="band">
+<h1 data-name>This store has no name yet.</h1>
+<p data-status>No products are saved for this merchant.</p>
+<div data-products></div>
+</section>
+</div>
+<script>
+fetch("/api/merchant", { cache: "no-store" }).then((res) => res.json()).then((data) => {
+  document.querySelector("[data-name]").textContent = data.name || "This store has no name yet.";
+  const products = data.products || [];
+  document.querySelector("[data-status]").textContent = products.length ? products.length + " product" + (products.length === 1 ? "" : "s") + "." : "No products are saved for this merchant.";
+  document.querySelector("[data-products]").innerHTML = products.map((item) => {
+    const open = Number(item.stock) > 0;
+    return "<article class=\"card\"><h3>" + item.name + "</h3><p class=\"price\">$" + item.price + "</p><p>" + (open ? item.stock + " in stock" : "Sold out") + "</p>" + (open ? "<p><a class=\"btn\" href=\"/api/checkout?product=" + item.id + "\">Buy</a></p>" : "<p><span class=\"btn\">Sold out</span></p>") + "</article>";
+  }).join("");
+});
+</script>
+</body>
+</html>
