@@ -1,0 +1,8 @@
+{
+  "name": "northline-commerce",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Northline store. Deploy on Vercel. Add variables only.",
+  "scripts": { "start": "npx serve ." },
+  "engines": { "node": ">=18" }
+}
