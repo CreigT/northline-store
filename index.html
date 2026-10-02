@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northline shop</title>
+<style>
+body{margin:0;background:#f6f1ea;color:#1c1915;font-family:Georgia,serif}
+main{width:min(720px,calc(100% - 32px));margin:0 auto;padding:28px 0 48px}
+a{color:inherit}
+nav{display:flex;justify-content:space-between;align-items:center}
+nav a{font-family:system-ui,sans-serif;text-decoration:none;font-size:15px}
+h1{font-size:42px;line-height:1.05;margin:18px 0 8px}
+.card{background:#fffdf9;border:1px solid #e4ddd2;border-radius:16px;padding:16px;margin:12px 0}
+.price{font-size:28px;margin:8px 0}
+.btn{display:inline-block;background:#2c4236;color:#f7f4ee;text-decoration:none;border-radius:999px;padding:10px 16px;font-family:system-ui,sans-serif}
+.sold{background:#e7dccb;color:#8a4b2f}
+small{font-family:system-ui,sans-serif;color:#5e574e}
+</style>
+</head>
+<body>
+<main>
+<nav><strong>Northline</strong><a href="#owner">Owner</a></nav>
+<p><small>Shop. You are responsible for what sells.</small></p>
+<h1>The shelf</h1>
+<article class="card"><h2>Field mug</h2><p>Speckled stoneware. Holds heat.</p><p class="price">$28</p><p>12 in stock. Ships in 3 days.</p><a class="btn" href="#buy">Buy</a></article>
+<article class="card"><h2>Everyday tee</h2><p>Heavy cotton. Neutral sand.</p><p class="price">$42</p><p>4 in stock. Ships in 4 days.</p><a class="btn" href="#buy">Buy</a></article>
+<article class="card"><h2>Amber oil</h2><p>Small bottle. Cork top.</p><p class="price">$36</p><p>Sold out. Buy is stopped.</p><span class="btn sold">Sold out</span></article>
+<p id="buy"><small>Buy goes to Stripe after you add a payment link. Card numbers do not land here.</small></p>
+<p id="owner"><small>Owner link is the key, the refund hold, and the stock count. Not this shelf.</small></p>
+</main>
+</body>
+</html>
