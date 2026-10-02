@@ -1,0 +1,6 @@
+{
+  "maxPriceChangePct": 15,
+  "minPrice": 1,
+  "maxPrice": 500,
+  "note": "A change inside the limit can publish. A bigger jump waits for the owner key."
+}

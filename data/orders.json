@@ -1,0 +1,14 @@
+{
+  "refundAutoMax": 20,
+  "note": "A refund at or under this amount can be approved. Over it, the owner must confirm. Nothing sends if refunds are held.",
+  "orders": [
+    {
+      "id": "NL-1001",
+      "productId": "field-mug",
+      "email": "buyer@example.com",
+      "amount": 28,
+      "status": "paid",
+      "ship": "Ships in 3 days"
+    }
+  ]
+}
