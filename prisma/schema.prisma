@@ -1,0 +1,173 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  passwordHash String
+  role         String        @default("OWNER")
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  memberships  StoreMember[]
+  auditLogs    AuditLog[]
+}
+
+model Merchant {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  stores    Store[]
+}
+
+model Store {
+  id           String         @id @default(cuid())
+  merchantId   String
+  merchant     Merchant       @relation(fields: [merchantId], references: [id])
+  name         String
+  slug         String         @unique
+  email        String
+  published    Boolean        @default(false)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  members      StoreMember[]
+  products     Product[]
+  customers    Customer[]
+  orders       Order[]
+  settings     StoreSettings?
+  subscription Subscription?
+  auditLogs    AuditLog[]
+  @@index([merchantId])
+}
+
+model StoreMember {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  storeId   String
+  store     Store    @relation(fields: [storeId], references: [id])
+  role      String
+  createdAt DateTime @default(now())
+  @@unique([userId, storeId])
+  @@index([storeId])
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  storeId     String
+  store       Store     @relation(fields: [storeId], references: [id])
+  title       String
+  description String    @default("")
+  priceCents  Int
+  sku         String?
+  status      String    @default("DRAFT")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  inventory   Inventory?
+  @@unique([storeId, sku])
+  @@index([storeId, status])
+}
+
+model Inventory {
+  id        String   @id @default(cuid())
+  productId String   @unique
+  product   Product  @relation(fields: [productId], references: [id])
+  storeId   String
+  available Int      @default(0)
+  lowAt     Int      @default(0)
+  updatedAt DateTime @updatedAt
+  @@index([storeId])
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  storeId   String
+  store     Store    @relation(fields: [storeId], references: [id])
+  email     String
+  name      String   @default("")
+  createdAt DateTime @default(now())
+  @@unique([storeId, email])
+}
+
+model Order {
+  id         String   @id @default(cuid())
+  storeId    String
+  store      Store    @relation(fields: [storeId], references: [id])
+  customerId String?
+  number     String
+  status     String   @default("PENDING")
+  totalCents Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  @@unique([storeId, number])
+  @@index([storeId, status])
+}
+
+model OrderItem {
+  id         String @id @default(cuid())
+  orderId    String
+  productId  String?
+  storeId    String
+  title      String
+  quantity   Int
+  priceCents Int
+}
+
+model Payment {
+  id        String   @id @default(cuid())
+  orderId   String   @unique
+  storeId   String
+  status    String
+  createdAt DateTime @default(now())
+}
+
+model Refund {
+  id          String   @id @default(cuid())
+  orderId     String
+  storeId     String
+  amountCents Int
+  status      String
+  createdAt   DateTime @default(now())
+}
+
+model Shipment {
+  id        String   @id @default(cuid())
+  orderId   String   @unique
+  storeId   String
+  carrier   String   @default("")
+  tracking  String   @default("")
+  status    String   @default("PENDING")
+  updatedAt DateTime @updatedAt
+}
+
+model Subscription {
+  id        String   @id @default(cuid())
+  storeId   String   @unique
+  plan      String
+  status    String
+  updatedAt DateTime @updatedAt
+}
+
+model StoreSettings {
+  id        String   @id @default(cuid())
+  storeId   String   @unique
+  currency  String   @default("USD")
+  paused    Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  storeId   String?
+  userId    String?
+  action    String
+  resource  String
+  createdAt DateTime @default(now())
+  @@index([storeId, createdAt])
+}
