@@ -1,37 +1,9 @@
 {
   "store": {
-    "name": "Northline",
-    "tagline": "A small store that runs while you sleep.",
-    "supportEmail": "owner@example.com",
+    "name": "",
+    "tagline": "",
+    "supportEmail": "",
     "currency": "USD"
   },
-  "products": [
-    {
-      "id": "field-mug",
-      "name": "Field mug",
-      "price": 28,
-      "stock": 12,
-      "blurb": "Speckled stoneware. Holds heat. Sits well on a desk.",
-      "ship": "Ships in 3 days",
-      "paymentLink": ""
-    },
-    {
-      "id": "everyday-tee",
-      "name": "Everyday tee",
-      "price": 42,
-      "stock": 4,
-      "blurb": "Heavy cotton. Neutral sand. Cut to be worn, not styled.",
-      "ship": "Ships in 4 days",
-      "paymentLink": ""
-    },
-    {
-      "id": "amber-oil",
-      "name": "Amber oil",
-      "price": 36,
-      "stock": 0,
-      "blurb": "A small bottle for hands and cutting boards. Cork top.",
-      "ship": "Ships in 2 days",
-      "paymentLink": ""
-    }
-  ]
+  "products": []
 }
