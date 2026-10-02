@@ -1,11 +1,9 @@
-# Phase 2 status
+# Phase 2
 
-Not approved. Not merged. Not complete.
+Not merged. Verdict: FAIL until GitHub Actions proves the Postgres job.
 
-Prisma schema validated with Prisma 5.22.0 against a placeholder URL. prisma generate did not finish: the CLI tried to npm install and exited 255.
+CI uses Postgres 16 only for the run. No production secret is committed.
 
-prisma migrate deploy was not run. No PostgreSQL server is available here. TEST_DATABASE_URL is unset. The integration test skipped. That is a fail for the database-backed tenant requirement, not a pass.
+This machine cannot start Postgres, so migrate and the two-tenant database test were not executed here.
 
-Signup uses db.$transaction when getDb() connects. Without DATABASE_URL it returns 503 and creates no user.
-
-This app is static HTML plus Vercel functions. There is no bundle step. node --check is syntax only, not a production build.
+Local unit tests: 7 passed. Integration test was not run against a database.

@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/tenant.test.js tests/session.test.js tests/tenant.integration.test.js",
-    "lint": "node --check lib/auth.js && node --check lib/tenant.js && node --check lib/db.js && node --check lib/session.js && node --check api/auth/signup.js && node --check api/products.js",
-    "typecheck": "node --check lib/auth.js && node --check lib/tenant.js && node --check lib/db.js && node --check lib/session.js",
-    "prisma:validate": "prisma validate",
-    "prisma:generate": "prisma generate",
-    "prisma:deploy": "prisma migrate deploy"
+    "lint": "node --check lib/auth.js && node --check lib/tenant.js && node --check lib/db.js && node --check lib/session.js && node --check api/auth/signup.js && node --check api/auth/signin.js && node --check api/auth/signout.js && node --check api/products.js",
+    "db:validate": "prisma validate",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "verify": "npm run lint && npm test"
   },
   "engines": { "node": ">=18" },
   "dependencies": { "@prisma/client": "5.22.0" },
