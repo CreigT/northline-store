@@ -3,31 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Northline shop</title>
-<style>
-body{margin:0;background:#f6f1ea;color:#1c1915;font-family:Georgia,serif}
-main{width:min(720px,calc(100% - 32px));margin:0 auto;padding:28px 0 48px}
-a{color:inherit}
-nav{display:flex;justify-content:space-between;align-items:center}
-nav a{font-family:system-ui,sans-serif;text-decoration:none;font-size:15px}
-h1{font-size:42px;line-height:1.05;margin:18px 0 8px}
-.card{background:#fffdf9;border:1px solid #e4ddd2;border-radius:16px;padding:16px;margin:12px 0}
-.price{font-size:28px;margin:8px 0}
-.btn{display:inline-block;background:#2c4236;color:#f7f4ee;text-decoration:none;border-radius:999px;padding:10px 16px;font-family:system-ui,sans-serif}
-.sold{background:#e7dccb;color:#8a4b2f}
-small{font-family:system-ui,sans-serif;color:#5e574e}
-</style>
+<title>Northline</title>
+<link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<main>
-<nav><strong>Northline</strong><a href="#owner">Owner</a></nav>
-<p><small>Shop. You are responsible for what sells.</small></p>
-<h1>The shelf</h1>
-<article class="card"><h2>Field mug</h2><p>Speckled stoneware. Holds heat.</p><p class="price">$28</p><p>12 in stock. Ships in 3 days.</p><a class="btn" href="#buy">Buy</a></article>
-<article class="card"><h2>Everyday tee</h2><p>Heavy cotton. Neutral sand.</p><p class="price">$42</p><p>4 in stock. Ships in 4 days.</p><a class="btn" href="#buy">Buy</a></article>
-<article class="card"><h2>Amber oil</h2><p>Small bottle. Cork top.</p><p class="price">$36</p><p>Sold out. Buy is stopped.</p><span class="btn sold">Sold out</span></article>
-<p id="buy"><small>Buy goes to Stripe after you add a payment link. Card numbers do not land here.</small></p>
-<p id="owner"><small>Owner link is the key, the refund hold, and the stock count. Not this shelf.</small></p>
-</main>
+<div class="wrap">
+<header class="nav">
+<a class="brand" href="/">Northline</a>
+<nav class="nav-links">
+<a href="/shop">Shop</a>
+<a href="/orders">Orders</a>
+<a href="/pricing">Pricing</a>
+<a href="/console">Owner</a>
+</nav>
+</header>
+<section class="band">
+<h1>A small shop. Three things. A clear price.</h1>
+<p>Look for free. Buy goes to Stripe, so your card stays there. If an item says sold out, it cannot be bought.</p>
+</section>
+<section class="product-grid">
+<article class="card"><h3>Field mug</h3><p>Speckled stoneware. Holds heat. Sits well on a desk.</p><p class="price">$28</p><p>12 in stock. Ships in 3 days.</p><p><a class="btn" href="/api/checkout?product=field-mug">Buy</a></p></article>
+<article class="card"><h3>Everyday tee</h3><p>Heavy cotton. Neutral sand. Made to be worn.</p><p class="price">$42</p><p>4 in stock. Ships in 4 days.</p><p><a class="btn" href="/api/checkout?product=everyday-tee">Buy</a></p></article>
+<article class="card"><h3>Amber oil</h3><p>A small bottle for hands and cutting boards.</p><p class="price">$36</p><p>Sold out.</p><p><span class="btn">Sold out</span></p></article>
+</section>
+<section class="band">
+<h2>How a purchase works</h2>
+<div class="grid-3">
+<article class="card"><h3>1. Pick an item</h3><p>The price on the card is the price you pay.</p></article>
+<article class="card"><h3>2. Pay on Stripe</h3><p>Buy opens a secure payment page. This shop never sees the card.</p></article>
+<article class="card"><h3>3. Keep the code</h3><p>After payment, open Orders and save the code. That is the receipt.</p></article>
+</div>
+<p><a class="btn" href="/orders?order=NL-1001">See a sample receipt</a></p>
+</section>
+<footer class="footer"><span>Questions go to the address on your receipt.</span><a href="/pricing">Owner plans</a></footer>
+</div>
 </body>
 </html>
