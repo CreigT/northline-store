@@ -1,8 +1,13 @@
 {
-  "name": "northline-commerce",
+  "name": "northline-store",
   "private": true,
-  "version": "0.1.0",
-  "description": "Northline store. Deploy on Vercel. Add variables only.",
-  "scripts": { "start": "npx serve ." },
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/tenant.test.js",
+    "lint": "node --check lib/auth.js && node --check lib/tenant.js && node --check lib/db.js && node --check api/auth/signup.js && node --check api/products.js",
+    "typecheck": "node --check lib/auth.js && node --check lib/tenant.js && node --check lib/db.js",
+    "build": "node --check api/checkout.js"
+  },
   "engines": { "node": ">=18" }
 }
